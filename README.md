@@ -1,5 +1,5 @@
 # maxplus
-An Octave toolbox for performing common tasks in max algebra.
+An Octave toolbox for performing common tasks in [max-plus algebra][maxpluswiki].
 
 ## Creating matrices and vectors in the max-plus semiring
 A constructor for max-plus matrices is available. To create a new matrix/vector
@@ -83,4 +83,16 @@ Max-Plus matrix:
 octave:5> ...
 ```
 
+## Installing the package
+You will need to clone this repo and create a gzipped package from source.
 
+```bash
+git clone https://github.com/VHarisop/maxplus.git && \
+	tar -cvzf maxplus.tgz maxplus/
+```
+
+Alternatively, you can look under [releases][releases], although these will
+probably be far from the latest builds.
+
+[maxpluswiki]: https://en.wikipedia.org/wiki/Max-plus_algebra
+[releases]: https://github.com/VHarisop/maxplus/releases
