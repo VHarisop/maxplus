@@ -12,15 +12,18 @@ function R = mpower(A, s)
 		# is simply multiplication
 		R = maxplus(MA * s);
 	else
-		# find the maximum exponent, q, for which 2^q < s
-		inf_exponent = floor(log2(s));
-		R = maxplus(MA);
-		for i = 1:inf_exponent
-			# calculate R^2 in max-plus terms
-			R = mtimes(R, R);
-		endfor
-		# calculate the remaining powers by stepping
-		for i = 1: (s - (2 ^ inf_exponent))
-			R = mtimes(R, A);
-		endfor
+		# iterative version of exponentiation-by-squaring.
+		R = maxplus(MA); R_aux = maxplus(0);
+		while (s > 1)
+			if (mod(s, 2) == 0)
+				R = mtimes(R, R);
+				s = s / 2;
+			else
+				R_aux = mtimes(R, R_aux);
+				R = mtimes(R, R);
+				s = (s - 1) / 2;
+			endif
+		endwhile
+		R = mtimes(R, R_aux);
 	endif
+endfunction
