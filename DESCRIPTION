@@ -7,3 +7,4 @@ Title: MaxPlus
 Description: A package containing common operations for matrices and vectors
  in the max-plus semiring.
 License: GPLv3+
+Categories: Matrix operations in the Max-Plus semiring.
