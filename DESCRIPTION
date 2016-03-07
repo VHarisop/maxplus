@@ -3,7 +3,6 @@ Version: 1.0.0
 Date: 2016-07-03
 Author: VHarisop
 Maintainer: VHarisop
- package maintainer.
 Title: MaxPlus
 Description: A package containing common operations for matrices and vectors
  in the max-plus semiring.
