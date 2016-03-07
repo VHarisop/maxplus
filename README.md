@@ -94,5 +94,18 @@ git clone https://github.com/VHarisop/maxplus.git && \
 Alternatively, you can look under [releases][releases], although these will
 probably be far from the latest builds.
 
+Then just install the package in Octave like you would normally do:
+```octave
+octave:1> pkg install maxplus
+octave:2> pkg load maxplus
+```
+
+If you want the `maxplus` package to be autoloaded when opening Octave,
+add an entry to your `.octaverc`:
+
+```
+pkg load maxplus
+```
+
 [maxpluswiki]: https://en.wikipedia.org/wiki/Max-plus_algebra
 [releases]: https://github.com/VHarisop/maxplus/releases
