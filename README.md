@@ -60,6 +60,8 @@ operations from max algebra. Those are:
 * mtimes - overloaded for scalar / matrix multiplication
 * mpower - scalar / matrix powers using the max-plus interpretation of
   multiplication
+* uminus - negation, equivalent to `-X`
+* uplus - unary plus, equivalent to `+X`
 * transpose - the transpose of a matrix, which is the same as in linear algebra
 * ctranspose - the conjugate transpose, which is defined as the negative
   transpose
@@ -83,6 +85,12 @@ Max-Plus matrix:
 octave:5> ...
 ```
 
+## Max-algebraic methods
+Common methods and procedures from max-algebra are intended to be implemented
+as functions. This is what the package has to offer so far:
+
+* `principal_solution`: Finds the principal solution of a one-sided system.
+
 ## Installing the package
 You will need to clone this repo and create a gzipped package from source.
 
@@ -96,7 +104,7 @@ probably be far from the latest builds.
 
 Then just install the package in Octave like you would normally do:
 ```octave
-octave:1> pkg install maxplus
+octave:1> pkg install maxplus.tgz
 octave:2> pkg load maxplus
 ```
 
