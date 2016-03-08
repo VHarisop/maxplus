@@ -90,6 +90,8 @@ Common methods and procedures from max-algebra are intended to be implemented
 as functions. This is what the package has to offer so far:
 
 * `principal_solution`: Finds the principal solution of a one-sided system.
+* `chebyshev`: Computes the chebyshev distance between two max-algebraic
+  matrices or vectors.
 
 ## Installing the package
 You will need to clone this repo and create a gzipped package from source.
