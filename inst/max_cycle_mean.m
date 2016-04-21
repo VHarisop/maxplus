@@ -6,28 +6,21 @@ function lambda = max_cycle_mean(M)
 	## Usage:
 	## 		lambda = max_cycle_mean(M);
 	##
+	if ~isa(M, "maxplus")
+		M = maxplus(M);
+	endif
 
 	[dim_x, dim_y] = size(M);
 	if (dim_x ~= dim_y)
 		error("Maximum cycle mean is not defined for non-square matrices!");
 	endif
 
-	if ~isa(M, "maxplus")
-		M = maxplus(M);
-	endif
+	diag_max = @(X) max(diag(X.mat));
 
 	current_mat = M;
-	lambda = diagonal_max(M);
+	lambda = diag_max(M);
 	for i = 2:dim_x
 		current_mat = current_mat * M;
-		lambda = max(diagonal_max(current_mat) / i, lambda);
+		lambda = max(diag_max(current_mat) / i, lambda);
 	endfor
 endfunction
-
-function res = diagonal_max(A)
-	## Finds the maximum element on the diagonal of a max-plus matrix.
-	res = max(diag(A.mat));
-endfunction
-		
-
-

@@ -90,6 +90,7 @@ Common methods and procedures from max-algebra are intended to be implemented
 as functions. This is what the package has to offer so far:
 
 * `principal_solution`: Finds the principal solution of a one-sided system.
+* `max_cycle_mean`: Computes the maximum cycle mean of a matrix.
 * `chebyshev`: Computes the chebyshev distance between two max-algebraic
   matrices or vectors.
 
