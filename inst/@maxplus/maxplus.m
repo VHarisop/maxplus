@@ -7,5 +7,5 @@ function M = maxplus(A)
 	## A can be any ordinary matrix in Octave.
 	## It will be stored as the mat field of the result.
 	M.mat = A;
-	M = class(M, "maxplus");
+	M = class(M, 'maxplus');
 endfunction

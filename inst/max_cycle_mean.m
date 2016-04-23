@@ -6,13 +6,13 @@ function lambda = max_cycle_mean(M)
 	## Usage:
 	## 		lambda = max_cycle_mean(M);
 	##
-	if ~isa(M, "maxplus")
+	if ~isa(M, 'maxplus')
 		M = maxplus(M);
 	endif
 
 	[dim_x, dim_y] = size(M);
 	if (dim_x ~= dim_y)
-		error("Maximum cycle mean is not defined for non-square matrices!");
+		error('Maximum cycle mean is not defined for non-square matrices!');
 	endif
 
 	diag_max = @(X) max(diag(X.mat));

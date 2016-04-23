@@ -12,7 +12,7 @@ function R = plus(A, B)
 	# that the matrix sizes are compatible
 	if !(all(size(MA) == 1)) && !(all(size(MB) == 1))
 		if !(all(size(MA) == size(MB)))
-			error("Matrix sizes are incompatible!");
+			error('Matrix sizes are incompatible!');
 		endif
 	endif
 

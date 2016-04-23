@@ -28,7 +28,7 @@ function [Gamma, cycle] = floyd_warshall(A)
 	# initially, assume no cycle exists
 	cycle = 0;
 
-	if ~isa(A, "maxplus")
+	if ~isa(A, 'maxplus')
 		Gamma = A;
 	else
 		Gamma = A.mat;
@@ -36,7 +36,7 @@ function [Gamma, cycle] = floyd_warshall(A)
 
 	# only square matrices have well-defined induced digraphs
 	if ~(size(Gamma, 1) == size(Gamma, 2))
-		error("Cannot run Floyd-Warshall on nonsquare matrices!");
+		error('Cannot run Floyd-Warshall on nonsquare matrices!');
 	endif
 
 	# main loop of floyd - warshall algorithm

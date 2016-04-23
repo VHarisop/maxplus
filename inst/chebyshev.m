@@ -13,14 +13,14 @@ function d = chebyshev(X, Y, dim)
 	endif
 
 	# If X is of max-plus type, get its matrix field.
-	if isa(X, "maxplus")
+	if isa(X, 'maxplus')
 		MX = X.mat;
 	else
 		MX = X;
 	endif
 
 	# If Y is of max-plus type, get its matrix field.
-	if isa(Y, "maxplus")
+	if isa(Y, 'maxplus')
 		MY = Y.mat;
 	else
 		MY = Y;

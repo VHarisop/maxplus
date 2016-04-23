@@ -4,7 +4,7 @@ function [dimx, dimy] = size(M)
 	## Usage:
 	## 		[sz_x, sz_y] = size(M);
 	##
-	if isa(M, "maxplus")
+	if isa(M, 'maxplus')
 		M = M.mat;
 	endif
 

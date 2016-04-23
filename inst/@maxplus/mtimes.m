@@ -18,7 +18,7 @@ function R = mtimes(A, B)
 	elseif (bx != ay)
 		# Make sure that matrix sizes are compatible in order
 		# to perform row-column matrix multiplication
-		error("Matrix sizes are incompatible!");
+		error('Matrix sizes are incompatible!');
 	else
 		R = zeros(ax, by);
 		# max-plus matrix multiplication is performed by taking the maximum
