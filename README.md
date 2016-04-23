@@ -91,8 +91,15 @@ as functions. This is what the package has to offer so far:
 
 * `principal_solution`: Finds the principal solution of a one-sided system.
 * `max_cycle_mean`: Computes the maximum cycle mean of a matrix.
+* `weak_tran_closure`: Computes the weak transitive closure of a matrix,
+  if any, setting a flag if a positive cycle exists.
+* `strong_tran_closure`: Like the above, but computes the strong transitive
+  closure instead.
 * `chebyshev`: Computes the chebyshev distance between two max-algebraic
   matrices or vectors.
+
+Some of the above might work without passing a matrix explicitly created by
+the `maxplus` constructor, but you should not rely on that.
 
 ## Installing the package
 You will need to clone this repo and create a gzipped package from source.
