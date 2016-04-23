@@ -26,3 +26,15 @@ function [Delta, cycle] = strong_tran_closure(A)
 
 	Delta = maxplus(I) + Gamma;
 endfunction
+
+%% TESTS: verify that cycles are detected and the closure is computed properly
+
+%!test
+%! x = maxplus([1 -1; -1 1]);
+%! [~, cs] = strong_tran_closure(x);
+%! assert(cs, 1);
+
+%!test
+%! x = maxplus([-5 -2 -1; -3 0 -3; -2 0 -1]);
+%! [q, ~] = strong_tran_closure(x);
+%! assert(q.mat, [0 -1 -1; -3 0 -3; -2 0 0]);

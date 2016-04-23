@@ -29,3 +29,15 @@ function d = chebyshev(X, Y, dim)
 	# Calculate maximum absolute difference along specified dimension.
 	d = max(abs(MX - MY), [], dim);
 endfunction
+
+%% TESTS: test various combinations of vectors for their distances
+
+%!test
+%! v1 = maxplus([1 0 2]);
+%! v2 = maxplus([1 4 -2]);
+%! assert(chebyshev(v1, v2), [0 4 4]);
+
+%!test
+%! v1 = maxplus([-1 0 -3]);
+%! v2 = maxplus([1 0 -2]);
+%! assert(chebyshev(v1, v2, 2), 2);
