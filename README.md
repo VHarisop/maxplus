@@ -85,6 +85,21 @@ Max-Plus matrix:
 octave:5> ...
 ```
 
+### Arithmetic and logical indexing
+Starting with v0.2.1, indexing using arithmetic, slicing and conditional
+expressions is partially supported. For example:
+
+```octave
+octave:1> mp_A = maxplus([-1 0 5; 9 0 -1; -1 0 2]);
+octave:2> mp_A(mp_A == 0) = -Inf;
+octave:3> mp_A
+Max-Plus matrix:
+
+   -1    -Inf     5
+    9    -Inf    -1
+   -1    -Inf     2   
+```
+
 ## Max-algebraic methods
 Common methods and procedures from max-algebra are intended to be implemented
 as functions. This is what the package has to offer so far:
