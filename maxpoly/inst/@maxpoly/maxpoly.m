@@ -14,7 +14,6 @@ classdef maxpoly
 		consts # The constant terms of the polynomial's factors
 	endproperties
 	methods
-		# Constructor
 		function obj = maxpoly(coefficients, constants)
 			## MAXPOLY creates a new maxpolynomial
 			##
@@ -51,16 +50,55 @@ classdef maxpoly
 			obj.consts = constants(ind)(:);
 		endfunction
 
-		# Maxpolynomial evaluation
 		function val = value_at(obj, x)
 			## VALUE_AT evaluates the maxpolynomial at a specified `x`.
 			## Usage:
 			## 		val = value_at(obj, x);
 			##		val = obj.value_at(x);
 			val = max(obj.consts + obj.coeffs * x);
-		endfunction	
+		endfunction
 
-		# Display function for octave toplevel
+		function grad = gradient_at(obj, x)
+			## GRADIENT_AT computes the gradient at a specified `x`.
+			##
+			## Usage:
+			##		grad = gradient_at(obj, x);
+			##		grad = obj.gradient_at(x);
+			##
+			## If the point in question is a corner of the maxpolynomial,
+			## the value returned is Nan (checked easily with isnan()).
+
+			# get first index of maximum and the maximum itself
+			[mx, arg] = max(obj.consts + obj.coeffs * x);
+			grad = obj.coeffs(arg);
+			if arg == length(obj.coeffs)
+				return;
+			endif
+			# if more than one points attain maximum, return NaN instead
+			if (obj.consts(arg + 1) + obj.coeffs(arg + 1) * x) == mx
+				grad = NaN;
+			endif
+		endfunction
+
+		function subgrad = subgradient_at(obj, x)
+			## SUBGRADIENT_AT computes the subgradient at a point `x`.
+			##
+			## Usage:
+			##		subgrad = subgradient_at(obj, x);
+			##		subgrad = obj.subgradient_at(obj, x);
+			##
+			## The subgradient coincides with the gradient in the case where
+			## the maxpolynomial is differentiable at `x`. Otherwise, it is
+			## calculated as 0.5 * (gradient_at(x - e) + gradient_at(x + e))
+			## where `e` is a perturbation around `x`.
+			subgrad = gradient_at(obj, x);
+			# if NaN was returned, return subgradient
+			if isnan(subgrad)
+				[~, arg] = max(obj.consts + obj.coeffs * x);
+				subgrad = (obj.coeffs(arg) + obj.coeffs(arg + 1)) / 2;
+			endif
+		endfunction
+
 		function display(obj)
 			## DISPLAY displays a maxpoly object in the Octave interpreter.
 			##
@@ -77,7 +115,6 @@ classdef maxpoly
 			disp(val);
 		endfunction
 
-		# Find the corners of a maxpolynomial
 		function gammas = corners(obj)
 			## CORNERS computes the corners of a maxpolynomial.
 			## The corners are the intersection points of two terms of the
@@ -89,7 +126,6 @@ classdef maxpoly
 			gammas = - diff(obj.consts) ./ diff(obj.coeffs);
 		endfunction
 
-		# Rectification algorithm
 		function pol = rectify(obj)
 			## RECTIFY removes inessential terms from the maxpolynomial.
 			## Usage:
@@ -100,7 +136,6 @@ classdef maxpoly
 		endfunction
 	endmethods
 
-	# Static methods on maxpolynomials
 	methods(Static = true)
 		function pol = evolution(e_rs, b_rs)
 			## EVOLUTION runs the evolution algorithm on a maxpolynomial
