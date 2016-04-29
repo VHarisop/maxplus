@@ -36,15 +36,19 @@ classdef maxpoly
 				if length(coefficients) ~= length(constants)
 					error('Constants / coefficients have different lengths!');
 				endif
-				obj.coeffs = coefficients(:);
-				obj.consts = constants(:);
 			elseif nargin == 1
-				# assume constants equal to 0
-				obj.coeffs = coefficients(:);
-				obj.consts = zeros(length(coefficients), 1);
+				# make sure input is ok
+				if ~isa(coefficients, 'numeric')
+					error ('Maxpolynomial arguments must be numeric!');
+				end
+				constants = zeros(length(coefficients), 1);
 			else
 				error('Cannot create empty maxpolynomial!');
 			endif
+			# acquire standard (i.e. ascending) order of coefficients
+			[~, ind] = sort(coefficients);
+			obj.coeffs = coefficients(ind)(:);
+			obj.consts = constants(ind)(:);
 		endfunction
 
 		# Maxpolynomial evaluation
@@ -58,17 +62,41 @@ classdef maxpoly
 
 		# Display function for octave toplevel
 		function display(obj)
-			## DISPLAY pretty display for a maxpoly object.
-			## Displays the current maxpolynomial in ordinary notation.
+			## DISPLAY displays a maxpoly object in the Octave interpreter.
+			##
+			## Displays the current maxpolynomial in ordinary notation, which
+			## is max { c_r + z * j_r }
 			n = length(obj.coeffs);
 			coeffs = obj.coeffs;
 			consts = obj.consts;
 			val = 'max{';
 			for i = 1:(n - 1)
-				val = strcat(val, sprintf(' %d + z^%d,', consts(i), coeffs(i)));
+				val = strcat(val, sprintf(' %d + %dz,', consts(i), coeffs(i)));
 			endfor
-			val = strcat(val, sprintf(' %d + z^%d }', consts(n), coeffs(n)));
+			val = strcat(val, sprintf(' %d + %dz }', consts(n), coeffs(n)));
 			disp(val);
+		endfunction
+
+		# Find the corners of a maxpolynomial
+		function gammas = corners(obj)
+			## CORNERS computes the corners of a maxpolynomial.
+			## The corners are the intersection points of two terms of the
+			## polynomial, c_p + z * j_p and c_r + z * j_r.
+			##
+			## This function works properly when the maxpolynomial
+			## uses standard (i.e. ascending) order of terms, which
+			## is normally enforced by its constructor.
+			gammas = - diff(obj.consts) ./ diff(obj.coeffs);
+		endfunction
+
+		# Rectification algorithm
+		function pol = rectify(obj)
+			## RECTIFY removes inessential terms from the maxpolynomial.
+			## Usage:
+			##		mpoly = maxpoly(...arguments...);
+			##		r = mpoly.rectify();
+			## RECTIFY uses the standard algorithm (see Butkovic, p. 110)
+			error ("RECTIFY not implemented yet!");
 		endfunction
 	endmethods
 
