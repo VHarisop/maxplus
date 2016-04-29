@@ -1,0 +1,9 @@
+Name: maxpoly
+Version: 0.1.0
+Date: 2016-04-28
+Author: VHarisop
+Maintainer: VHarisop
+Title: MaxPoly
+Description: A package implementing a maxpolynomial in one variable.
+License: GPLv3+
+Categories: Maxpolynomials, Tropical Algebra
