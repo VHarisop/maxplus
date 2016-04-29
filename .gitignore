@@ -1,0 +1,6 @@
+# ignore swap files
+*.swp
+
+# ignore maxneuron folder
+maxneuron/
+
