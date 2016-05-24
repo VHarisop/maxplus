@@ -1,8 +1,8 @@
-function R = kron(A, B)
-	## KRON computes the max-algebraic kronecker product of two matrices
+function R = max_kron(A, B)
+	## MAX_KRON computes the max-algebraic kronecker product of two matrices
 	## 
 	## Usage:
-	##		R = kron(A, B);
+	##		R = max_kron(A, B);
 	##
 	## If A has size NxK and B has size MxR, the resulting matrix has
 	## size (NM)x(KR).
